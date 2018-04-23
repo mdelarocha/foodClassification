@@ -7,8 +7,8 @@ import numpy as np
 
 # Set the path
 
-path = '/FileStore/tables/yelp_photos'
-outPath = path + "resized/"
+path = '/FileStore/tables/photosSample'
+outPath = path + "resizedImgs/"
 
 files = os.listdir(path)
 
