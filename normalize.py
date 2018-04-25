@@ -23,31 +23,31 @@ for i in files:
     else:
         print("Found file " + path + files[i])
 
-img = cv2.imread(path + files[i])
-cv2.imshow('original', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+        img = cv2.imread(path + files[i])
+        cv2.imshow('original', img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
-#now we crop it into a square
+        # now we crop it into a square
 
-y, x, c = img.shape
+        y, x, c = img.shape
 
-if x > y:
-    offset = (x-y)/2
-    cropped = img[0:y, offset:(x-offset)]
-elif y > x:
-    offset = (y-x)/2
-    cropped = img[offset:(y-offset), 0:x]
-else:
-    cropped = img;
+        if x > y:
+            offset = (x-y)/2
+            cropped = img[0:y, offset:(x-offset)]
+        elif y > x:
+            offset = (y-x)/2
+            cropped = img[offset:(y-offset), 0:x]
+        else:
+            cropped = img;
 
-#now we resize it to a standard resolution
+        #now we resize it to a standard resolution
 
-imgOut = np.zeros((xRes, yRes, 3), np.uint8)
-imgOut = cv2.resize(cropped, (xRes, yRes), 0, 0, cv2.INTER_LINEAR)
-cv2.imshow('cropped', imgOut)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-cv2.imwrite(outPath + files[i], imgOut)
+        imgOut = np.zeros((xRes, yRes, 3), np.uint8)
+        imgOut = cv2.resize(cropped, (xRes, yRes), 0, 0, cv2.INTER_LINEAR)
+        cv2.imshow('cropped', imgOut)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        cv2.imwrite(outPath + files[i], imgOut)
 
-print("Wrote file " + outPath + files[i])
+        print("Wrote file " + outPath + files[i])
